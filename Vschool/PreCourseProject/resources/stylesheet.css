@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(93, 171, 235);
+}
+
+.bodyContainer{
+    border: 1px solid black;
+    margin: 100px;
+    display: flexbox;
+    text-align: center;
+    background-color: rgba(27, 57, 71, 0.411);
+    box-sizing: border-box;
+    
+}
+
+
+
+#usernameBox{
+    height: 25px;
+    border: 1px solid black;
+    display: inline-flex;
+    flex-wrap: nowrap;
+}
+
+#passwordBox{
+    height: 25px;
+    border: 1px solid black;
+    display: inline-flex;
+    flex-wrap: nowrap;
+}
