@@ -1,0 +1,20 @@
+
+#box{
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+}
+
+#p, input{
+    margin: auto;
+    display: inline-block;
+}
+
+#square{
+    margin: auto;
+    width: 30%;
+    min-height: 250px;
+    max-height: 500px;
+    border: solid 5px black;
+    padding: auto;
+}
