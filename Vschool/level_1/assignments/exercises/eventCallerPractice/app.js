@@ -40,3 +40,25 @@ function textColor(){
             }
         }
 }
+
+//mouse events
+square.addEventListener('mousedown', squareClick);
+function squareClick(){
+  square.style.backgroundColor = "red";
+}
+square.addEventListener('mouseover', squarHover);
+function squarHover(){
+  square.style.backgroundColor = "blue";
+}
+square.addEventListener('mouseup', squareRelease);
+function squareRelease(){
+  square.style.backgroundColor = "yellow";
+}
+square.addEventListener('dblclick', squareDoubleClick);
+function squareDoubleClick(){
+  square.style.backgroundColor = "green";
+}
+document.addEventListener('mousewheel', wheel);
+function wheel(){
+  square.style.backgroundColor = "orange";
+}
