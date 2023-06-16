@@ -23,18 +23,8 @@ for(var button of buttons){
 }
 
 //text logic
-var r = red;
-var b = blue;
-var g = green;
-var y = yellow;
-var o = orange;
 
-var cTextVal = [];
-cTextVal[0] = r;
-cTextVal[1] = b;
-cTextVal[2] = g;
-cTextVal[3] = y;
-cTextVal[4] = o;
+var cTextVal = [r, b, g, y, o,];
 
 document.getElementById("textOption").addEventListener("input", textColor);
 
@@ -42,7 +32,8 @@ function textColor(){
         var textIn = document.getElementById("textOption").value
         //console.log(textIn)
         for(var i = 0; i < cTextVal.length; i++){
-            if(textIn == cTextVal[i]){
+            if(textIn == cTextVal[i] || textIn == cValue[i]){
+                cTextVal[i] = cValue[i];
                 square.style.backgroundColor = cTextVal[i];
             } else if (textIn == ""){
               square.style.backgroundColor = cTextVal[4]
