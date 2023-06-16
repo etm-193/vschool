@@ -23,31 +23,29 @@ for(var button of buttons){
 }
 
 //text logic
+var r = red;
+var b = blue;
+var g = green;
+var y = yellow;
+var o = orange;
 
-// var text = document.getElementById("textOption").value
-// function typed(event){
-//     for(var i = 0; i < btnValue.length; i++)
-//     if(event.target.text == btnValue[i]){
-//         // console.log(btnValue[i] + "1")
-//         // console.log(event.target.id); TESTS WORK
-//         square.style.backgroundColor = btnValue[i];
-//     }
-// }
-// for(var typeIn of text){
-//     text.addEventListener("keyStroke", typed)
-// }
-//var textIn = document.getElementById("textOption").value
-//console.log(textIn) this onlly gives me the element value as an empty string
+var cTextVal = [];
+cTextVal[0] = r;
+cTextVal[1] = b;
+cTextVal[2] = g;
+cTextVal[3] = y;
+cTextVal[4] = o;
+
 document.getElementById("textOption").addEventListener("input", textColor);
 
 function textColor(){
         var textIn = document.getElementById("textOption").value
-        console.log(textIn)
-        for(var i = 0; i < cValue.length; i++){
-            if(textIn == cValue[i]){
-                square.style.backgroundColor = cValue[i];
+        //console.log(textIn)
+        for(var i = 0; i < cTextVal.length; i++){
+            if(textIn == cTextVal[i]){
+                square.style.backgroundColor = cTextVal[i];
             } else if (textIn == ""){
-              square.style.backgroundColor = cValue[4]
+              square.style.backgroundColor = cTextVal[4]
             }
         }
 }
