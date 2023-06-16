@@ -36,15 +36,11 @@ for(var button of buttons){
 // for(var typeIn of text){
 //     text.addEventListener("keyStroke", typed)
 // }
-var textIn = document.getElementById("textOption").value
+//var textIn = document.getElementById("textOption").value
 //console.log(textIn) this onlly gives me the element value as an empty string
+document.getElementById("textOption").addEventListener("input" textColor);
 
-function textE(event){
-    for(var i = 0; i < cValue.length; i++){
-        if(event.value == cValue[i]){
-            console.log(cValue)
-            return cValue
-        }
-    }
+function textColor(){
+        var textIn = document.getElementById("textOption").value
+        console.log(textIn)
 }
-document.addEventListener('onInput', textE())
