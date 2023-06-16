@@ -62,3 +62,8 @@ document.addEventListener('mousewheel', wheel);
 function wheel(){
   square.style.backgroundColor = "orange";
 }
+
+/*
+For Easy testing please use:
+https://codepen.io/ernest_jtorres/pen/OJaNMop
+*/
