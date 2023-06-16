@@ -38,9 +38,16 @@ for(var button of buttons){
 // }
 //var textIn = document.getElementById("textOption").value
 //console.log(textIn) this onlly gives me the element value as an empty string
-document.getElementById("textOption").addEventListener("input" textColor);
+document.getElementById("textOption").addEventListener("input", textColor);
 
 function textColor(){
         var textIn = document.getElementById("textOption").value
-        console.log(textIn)
+        //console.log(textIn)
+        for(var i = 0; i < cValue.length; i++){
+            if(textIn == cValue[i]){
+                square.style.backgroundColor = cValue[i];
+            } else {
+                square.style.backgroundColor = cValue[4]
+            }
+        }
 }
