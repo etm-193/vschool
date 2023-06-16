@@ -37,6 +37,8 @@ for(var button of buttons){
 //     text.addEventListener("keyStroke", typed)
 // }
 var textIn = document.getElementById("textOption").value
+//console.log(textIn) this onlly gives me the element value as an empty string
+
 function textE(event){
     for(var i = 0; i < cValue.length; i++){
         if(event.value == cValue[i]){
@@ -45,6 +47,4 @@ function textE(event){
         }
     }
 }
-HTMLInputElement.addEventListener('input', textE()){
-    
-}
+document.addEventListener('onInput', textE())
