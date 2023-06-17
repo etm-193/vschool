@@ -29,3 +29,6 @@ span.style.fontSize = "20px"
 spanTwo.style.fontSize = "20px"
 div.style.padding = "5px"
 //------------------------------------------------------- BRONZE COMPLETED
+
+//SILVER
+//Step 1 - 
