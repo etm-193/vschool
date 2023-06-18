@@ -33,11 +33,13 @@ div.style.padding = "5px"
 //SILVER
 //Step 1 - clear button
 
+
+
 var clearBtn = document.getElementById('clear-button');
 
 var msgs = document.getElementsByClassName('messages')
-var msgLeft = document.getElementsByClassName('message right');
-var msgRight = document.getElementsByClassName('message left');
+var msgLeft = document.getElementsByClassName('messageRight');
+var msgRight = document.getElementsByClassName('messageLeft');
 
 function forClrBtn(){
     msgLeft.innerHTML = " ";
