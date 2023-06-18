@@ -31,4 +31,17 @@ div.style.padding = "5px"
 //------------------------------------------------------- BRONZE COMPLETED
 
 //SILVER
-//Step 1 - 
+//Step 1 - clear button
+
+var clearBtn = document.getElementById('clear-button');
+
+var msgs = document.getElementsByClassName('messages')
+var msgLeft = document.getElementsByClassName('message right');
+var msgRight = document.getElementsByClassName('message left');
+
+function forClrBtn(){
+    msgLeft.innerHTML = " ";
+    msgRight.innerHTML = " ";
+}
+
+clearBtn.addEventListener('onclick', forClrBtn);
