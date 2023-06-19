@@ -82,20 +82,25 @@ function send(event){
 
 var drop = document.getElementById("theme-drop-down")
 var valuePoint = drop.getElementsByTagName("option")
-var valueOne = valuePoint[0].value
-var valueTwo = valuePoint[1].value
-var themeOne = valuePoint[0]
-var themeTwo = valuePoint[1]
-
-console.log(themeOne, themeTwo)
 
 drop.addEventListener("change", changeTheme)
 
 function changeTheme(event){
-    console.log("change")
-    console.log(valueOne)
-    // console.log(event.target.value) good test
-    if(event.target.value == themeOne){
-        // console.log(valueOne) good test
+    var valueOne = valuePoint[0].value
+    var valueTwo = valuePoint[1].value
+    if(event.target.value == valueOne){
+        console.log(valueOne) 
+        for(var i = 0; i < leftMsg.length; i++){
+            leftMsg[i].style.backgroundColor = "brown"
+            rightMsg[i].style.backgroundColor = "blue"
+        }
+    } else if(event.target.value == valueTwo){
+        console.log(valueTwo)
+        for(var i = 0; i < leftMsg.length; i++){
+            
+            leftMsg[i].style.backgroundColor = "red"
+            rightMsg[i].style.backgroundColor = "black"
+        }
     }
 }
+// --------------------------------------------------------- GOLD COMPLETED
