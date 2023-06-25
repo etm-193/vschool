@@ -37,13 +37,9 @@ div.style.padding = "5px"
 
 var clearBtn = document.getElementById('clear-button');
 
-var msgs = document.getElementsByClassName('messages')
-var msgLeft = document.getElementsByClassName('messageRight');
-var msgRight = document.getElementsByClassName('messageLeft');
+var elementOne = document.getElementsByClassName('messages');
 
-function forClrBtn(){
-    msgLeft.innerHTML = " ";
-    msgRight.innerHTML = " ";
-}
+elementOne.setAttribute("id", "messages");
 
-clearBtn.addEventListener('onclick', forClrBtn);
+var messages = document.getElementById("id");
+
