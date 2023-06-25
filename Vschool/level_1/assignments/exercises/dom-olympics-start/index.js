@@ -1,3 +1,4 @@
+//------------------------------------------------------- SILVER
 //step 1 - header
 var bronze = "Brought to you by JavaScript!"
 var header = document.getElementById('header');
@@ -30,16 +31,25 @@ spanTwo.style.fontSize = "20px"
 div.style.padding = "5px"
 //------------------------------------------------------- BRONZE COMPLETED
 
-//SILVER
-//Step 1 - clear button
+//------------------------------------------------------- SILVER 
+//Step 1 - clear button  
+var clearBtn = document.getElementById("clearButton");
+var msgs = document.getElementsByClassName("messages");
+var leftMsg = document. getElementsByClassName("message left");
+var rightMsg = document.getElementsByClassName("message right");
 
+clearBtn.addEventListener('click', clear)
 
 
 var clearBtn = document.getElementById('clear-button');
 
-var elementOne = document.getElementsByClassName('messages');
+var msgs = document.getElementsByClassName('messages')
+var msgLeft = document.getElementsByClassName('messageRight');
+var msgRight = document.getElementsByClassName('messageLeft');
 
-elementOne.setAttribute("id", "messages");
+function forClrBtn(){
+    msgLeft.innerHTML = " ";
+    msgRight.innerHTML = " ";
+}
 
-var messages = document.getElementById("id");
-
+clearBtn.addEventListener('onclick', forClrBtn);
