@@ -1,6 +1,8 @@
 const num = []
 
-for(const i = 0; i < 9; i++){
+for(var i = 0; i < 10; i++){
     num.push(i)
     console.log(num[i])
 }
+
+for(var i = 0; i < )
