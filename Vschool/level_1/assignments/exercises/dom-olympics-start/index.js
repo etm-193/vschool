@@ -40,67 +40,16 @@ var rightMsg = document.getElementsByClassName("message right");
 
 clearBtn.addEventListener('click', clear)
 
-function clear(){
-    console.log("clear")
-    console.log(leftMsg[0])
-    for(var i = 0; i < leftMsg.length; i++){
-        leftMsg[i].innerHTML = "";
-        leftMsg[i].style.backgroundColor = "white";
-        console.log(leftMsg[i])
-    }
-    for(var i = 0; i < rightMsg.length; i++){
-        rightMsg[i].innerHTML = "";
-        rightMsg[i].style.backgroundColor = "white";
-        console.log(rightMsg[i])
-    }
+
+var clearBtn = document.getElementById('clear-button');
+
+var msgs = document.getElementsByClassName('messages')
+var msgLeft = document.getElementsByClassName('messageRight');
+var msgRight = document.getElementsByClassName('messageLeft');
+
+function forClrBtn(){
+    msgLeft.innerHTML = " ";
+    msgRight.innerHTML = " ";
 }
 
-//Step 2 -- submit button  
-
-var inputFld = document.getElementById("input");
-inputFld.value = "Let's start over"
-var input = inputFld;
-// console.log(document.getElementsByTagName("button")) is being returned as an array
-
-var pointToBtn = document.getElementsByTagName("button")
-var sendIt = pointToBtn[1]
-// console.log(sendIt) test works - pointing to the second button on the page.
-
-sendIt.addEventListener("click", send)
-
-//i know im breaking the rules of polymorph.inherit.encap.abstract with the functions ive been writing
-function send(event){
-    event.preventDefault();
-    clear();
-    leftMsg[0].innerHTML = input.value;
-    input.value = "";
-    leftMsg[0].style.backgroundColor = "blue";
-};
-//----------------------------------------------------------- SILVER COMPLETED
-
-// GOLD
-
-var drop = document.getElementById("theme-drop-down")
-var valuePoint = drop.getElementsByTagName("option")
-
-drop.addEventListener("change", changeTheme)
-
-function changeTheme(event){
-    var valueOne = valuePoint[0].value
-    var valueTwo = valuePoint[1].value
-    if(event.target.value == valueOne){
-        console.log(valueOne) 
-        for(var i = 0; i < leftMsg.length; i++){
-            leftMsg[i].style.backgroundColor = "brown"
-            rightMsg[i].style.backgroundColor = "blue"
-        }
-    } else if(event.target.value == valueTwo){
-        console.log(valueTwo)
-        for(var i = 0; i < leftMsg.length; i++){
-            
-            leftMsg[i].style.backgroundColor = "red"
-            rightMsg[i].style.backgroundColor = "black"
-        }
-    }
-}
-// --------------------------------------------------------- GOLD COMPLETED
+clearBtn.addEventListener('onclick', forClrBtn);
