@@ -17,3 +17,8 @@ function fizzBuzz(){
 }
 
 fizzBuzz()
+
+/*
+BACKUP LINK FOR EASY TESTING:
+https://codepen.io/ernest_jtorres/pen/KKrQjyr
+*/ 

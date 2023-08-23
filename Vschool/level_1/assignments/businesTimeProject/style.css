@@ -70,3 +70,76 @@ div > h1{
     display: inline-block;
     width: 25%;
 }
+
+ body{
+    /* background-image: url(/Vschool/level_1/assignments/businesTimeProject/unnamed.jpg);
+    background-repeat: no-repeat;
+    background-position: auto;
+    background-size: 100%;
+     */
+} 
+
+#container{
+    display:grid;
+    border: solid 1px black;
+    grid-template-columns: repeat(auto-fit 12fr);
+    grid-template-rows: auto;
+}
+#presentation{
+    background-color: rgb(108, 189, 144);
+    position: relative;
+}
+div > #logo {
+    margin: 50px auto;
+    height: 500px;
+    position:static;
+
+}
+div > h1{
+    margin: 10px auto;
+    font-size: 100px;
+}
+
+#nav{
+
+    border: solid 1px black;
+    grid-column: 1 / 13;
+    display: flex;
+    height: 35px;
+    justify-content: right;
+    justify-content: space-evenly;
+}
+
+#nav > a{
+    border: solid 1px black;
+    font-size: 25px;
+    color:rgb(88, 187, 109);
+    background-color: rgba(255, 254, 196, 0.822);
+}
+
+#imgOneCont > img, #imgTwoCont > img, #imgThrdCont>img{
+    border: solid 1px black;
+    height: 100px;
+    width: 100px;
+
+}
+
+
+#imgOneCont{
+    border: solid 1px black;
+    display: inline-block;    
+    width: 25%;
+}
+
+#imgTwoCont {
+    border: solid 1px black;
+    display: inline-block;
+    width: 25%;
+    height: 250px;
+}
+
+#imgThrdCont {
+    border: solid 1px black;
+    display: inline-block;
+    width: 25%;
+}
