@@ -75,3 +75,14 @@ if (options[fightOrRun] === "fight") {
   run();
 }
 
+// if (enemyChance === 2) {
+
+      let randomEnemyIndex = getRandomNumber(0, enemies.length - 1);
+
+      let currEnemy = enemies[randomEnemyIndex];
+
+      console.log("An enemy has appeared");
+
+      console.log(currEnemy);
+
+    }
