@@ -58,11 +58,16 @@ function countEven(){
 }
 countEven()
 
-// 3.
+// 3.complete
 
     const fruitTwo = ["banana", "orange", "apple", "kiwi", "pear", "peach"]
-    
-
+    let newFruit = [];
+    for(let i = 0; i < fruitTwo.length; i++){
+        if( i % 2 == 1){
+            newFruit.push(fruitTwo[i])
+        }
+    }
+    console.log(newFruit)
 /*
 # **Silver Medal**
 
