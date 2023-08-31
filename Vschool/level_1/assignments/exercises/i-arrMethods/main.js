@@ -27,3 +27,5 @@ console.log(newFood)
 console.log(food)
 
 console.log(food.reverse())
+
+//code works - confirmed 08/28/2023
