@@ -66,4 +66,6 @@ function fight(currEnemy){
     console.log(`Get ready you are facing ${currEnemy.name}`)
 }
 
-function run(){}
+function run(){
+    console.log(`you chose to run from ${currEnemy.name}`)
+}
