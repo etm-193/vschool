@@ -31,7 +31,7 @@ console.log("you fall through a trap door. When you land surprisingly unharmed y
 player.inventory.push("stick")
 while(isGameRunning){
     let action = readline.question("What do you do? Press[w] to walk, [i] for inventory, or [q] to quit.",{limit:["w","i","q"]});
-
+    
     if(action === "w"){
         console.log("you move forward");
         let enemyChance = randomNumber(1, 4);
@@ -47,6 +47,11 @@ while(isGameRunning){
             console.log(options[fightOrRun]);
             if(options[fightOrRun] === "fight"){
                 fight(currEnemy);
+                if(player.health <= 0){
+                    console.log(`Your blood paints the walls and pools on the floor, ${currEnemy} yells "someone get a mop i made a mess!"`)
+                    console.log("game over!")
+                    isGameRunning = false
+                }
             } else if(options[fightOrRun] === "run"){
                 run()
             }
@@ -64,8 +69,55 @@ while(isGameRunning){
 
 function fight(currEnemy){
     console.log(`Get ready you are facing ${currEnemy.name}`)
+    let isFight = true;
+    while(isFight === true){
+        // console.log(player.health)
+        // console.log(currEnemy.health)
+
+        const choice = ["attack", "inventory", "run"]
+        let playerChoice = readline.keyInSelect(choice, "attack, inventory, run(again)?")
+        console.log(choice[playerChoice]);
+        console.log(`your current health : ${player.health}`)
+        console.log(`${currEnemy.name}'s health: ${currEnemy.health}`)
+
+        if(choice[playerChoice] === "attack"){
+            attack(currEnemy)//working so far however when hp reaches 0 loop continues
+            if(enemies == []){
+                console.log(`congratulations ${player.name} you beat everyone and live to see another day!`)
+                isFight = false;
+                
+            }  else if (currEnemy.health <= 0){
+                console.log(`you defeated ${currEnemy.name} !`)
+                enemies.pop(currEnemy)  
+                isFight = false
+            } else if(player.health <= 0){
+                console.log(`Your blood paints the walls and pools on the floor, ${currEnemy} yells "someone get a mop i made a mess!"`)
+                console.log("game over!")
+                isGameRunning = false
+            }
+        }
+        
+    }
 }
 
 function run(){
     console.log(`you chose to run from ${currEnemy.name}`)
 }
+
+function attack(currEnemy){
+    let dmg = randomNumber(1,5)
+    let newHealth = currEnemy.health - dmg
+    currEnemy.health = newHealth
+    console.log(`${currEnemy.name} took ${dmg} points of dmg`);
+    // health check!
+
+    if(!currEnemy.health <= 0){
+    
+    //enemy counter attack
+    let counter = randomNumber(0,5);
+    let hurtPlayer = player.health - counter;
+    player.health = hurtPlayer
+    console.log(`${currEnemy.name} counter attacks! you took ${counter} points of damage!`)
+    
+    }
+}// loop not breaking
