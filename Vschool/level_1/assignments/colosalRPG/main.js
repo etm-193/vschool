@@ -1,6 +1,9 @@
 //colosal rpg game!
+//imports
 const readline = require('readline-sync');
 
+
+//global variables
 let isGameRunning = true;
 
 function Character(name, health, inventory){
@@ -9,11 +12,11 @@ function Character(name, health, inventory){
     this.health = health;
     // this.atk = atk;
     // this.def = def;
-    this.inventory = [];
+    // this.inventory = inventory[""];
 }
 
 const playerName = readline.question("input name: ") // working - need to edit
-const player = new Character(playerName, 100,);
+const player = new Character(playerName, 100,[""]);
 const enemy1 = new Character("Annoying Imp", 15, ["Dagger", "gold coins"]);
 const enemy2 = new Character("Troll Order", 30, ["Great Sword", "Troll Snot", "troll nails"]);
 const enemy3 = new Character("Frustrated Developer", 90, ["keyboard hammer","mouse whip", "monitor-rent talisman", "Coffee"]);
@@ -28,7 +31,11 @@ const welcome = `Welcome ${player.name}...Says a nerdy yet handsom looking devel
 
 console.log(welcome);
 console.log("you fall through a trap door. When you land surprisingly unharmed you look around and find yourself in a fire lit corridor. Hey look there is a stick on the floor, maybe you can whack someone with it.");
-player.inventory.push("stick")
+// player.inventory.push("stick")
+
+
+//main logic
+
 while(isGameRunning){
     let action = readline.question("What do you do? Press[w] to walk, [i] for inventory, or [q] to quit.",{limit:["w","i","q"]});
     
@@ -36,8 +43,9 @@ while(isGameRunning){
         console.log("you move forward");
         let enemyChance = randomNumber(1, 4);
         console.log(enemyChance);
-        
-        if(enemyChance === 3){
+        if(enemies.length == 1){
+            console.log(enemies)
+        } else if(enemyChance === 3){
             let randomEnemyIndex = randomNumber(0, enemies.length -1);
             let currEnemy = enemies[randomEnemyIndex];
             console.log(`${currEnemy.name} has appeared`);
@@ -48,8 +56,9 @@ while(isGameRunning){
             if(options[fightOrRun] === "fight"){
                 fight(currEnemy);
                 if(player.health <= 0){
-                    console.log(`Your blood paints the walls and pools on the floor, ${currEnemy} yells "someone get a mop i made a mess!"`)
-                    console.log("game over!")
+                    // console.log(`Your blood paints the walls and pools on the floor, ${currEnemy} yells "someone get a mop i made a mess!"`)
+                    // console.log("game over!")
+                    // isFight = false
                     isGameRunning = false
                 }
             } else if(options[fightOrRun] === "run"){
@@ -67,6 +76,9 @@ while(isGameRunning){
 
 }
 
+//functions
+
+
 function fight(currEnemy){
     console.log(`Get ready you are facing ${currEnemy.name}`)
     let isFight = true;
@@ -82,17 +94,19 @@ function fight(currEnemy){
 
         if(choice[playerChoice] === "attack"){
             attack(currEnemy)//working so far however when hp reaches 0 loop continues
-            if(enemies == []){
+            if(enemies.length == 0){
                 console.log(`congratulations ${player.name} you beat everyone and live to see another day!`)
                 isFight = false;
                 
             }  else if (currEnemy.health <= 0){
                 console.log(`you defeated ${currEnemy.name} !`)
-                enemies.pop(currEnemy)  
+                enemies = enemies.pop(currEnemy)  
+                console.log(`enemies left ${enemies}`)
                 isFight = false
             } else if(player.health <= 0){
-                console.log(`Your blood paints the walls and pools on the floor, ${currEnemy} yells "someone get a mop i made a mess!"`)
+                console.log(`Your blood paints the walls and pools on the floor, ${currEnemy.name} yells "someone get a mop i made a mess!"`)
                 console.log("game over!")
+                isFight = false
                 isGameRunning = false
             }
         }
@@ -100,12 +114,19 @@ function fight(currEnemy){
     }
 }
 
-function run(){
-    console.log(`you chose to run from ${currEnemy.name}`)
+function run(currEnemy){
+    console.log(`you chose to run from ${currEnemy}`)
+    let escapeChance = randomNumber(0,1);
+    if(escapeChance === 0){
+        console.log("You failed to escape!")
+        fight(currEnemy);
+    } else{
+        isFight = false
+    }
 }
 
 function attack(currEnemy){
-    let dmg = randomNumber(1,5)
+    let dmg = randomNumber(1,7)
     let newHealth = currEnemy.health - dmg
     currEnemy.health = newHealth
     console.log(`${currEnemy.name} took ${dmg} points of dmg`);
@@ -114,7 +135,7 @@ function attack(currEnemy){
     if(!currEnemy.health <= 0){
     
     //enemy counter attack
-    let counter = randomNumber(0,5);
+    let counter = randomNumber(0,3);
     let hurtPlayer = player.health - counter;
     player.health = hurtPlayer
     console.log(`${currEnemy.name} counter attacks! you took ${counter} points of damage!`)
