@@ -24,7 +24,7 @@ const healthPotion = new Potion("Health Potion", "Restores 30 HP", 30);
 
 // Create player and enemy characters
 const playerName = readline.question("Input name: ");
-const player = new Character(playerName, 100, []);
+const player = new Character(playerName, 100, );
 const enemy1 = new Character("Annoying Imp", 15, [healthPotion, healthPotion, healthPotion]);
 const enemy2 = new Character("Troll Order", 30, [healthPotion]);
 const enemy3 = new Character("Frustrated Developer", 90, [healthPotion,healthPotion]);
@@ -131,15 +131,16 @@ function run(currEnemy) {
 
 function attack(currEnemy) {
     let dmg = randomNumber(1, 7);
-    let newHealth = currEnemy.health - dmg;
-    currEnemy.health = newHealth;
-    
+    // let newHealth = currEnemy.health - dmg;
+    // currEnemy.health = newHealth;
+    currEnemy.health -= dmg;
     console.log(`You attack ${currEnemy.name}, dealing ${dmg} points of damage.`);
     
     if (currEnemy.health > 0) {
         let counter = randomNumber(0, 3);
-        let hurtPlayer = player.health - counter;
-        player.health = hurtPlayer;
+        // let hurtPlayer = player.health - counter;
+        // player.health = hurtPlayer;
+        player.health -= counter;
         console.log(`${currEnemy.name} counterattacks! You took ${counter} points of damage!`);
     }
 }
