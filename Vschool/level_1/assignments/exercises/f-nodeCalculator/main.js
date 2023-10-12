@@ -34,3 +34,26 @@ if(funcChoice === "add"){
 
 
 
+/*function largestNumber(...numbers){//rest operator
+  // const numberArr = [...numbers];//spread operator
+  // numberArr.sort(function(a,b){
+  //   return b - a
+  // })
+  // return numberArr[0]
+return Math.max(...numbers)
+
+}
+// Write a function called `largestNumber` that takes 3 numbers and returns the largest number. Test with the following:
+
+console.log(largestNumber(3, 8, 9, 50, 2, 70))
+console.log(largestNumber(25,-10, 10))
+
+
+
+/*
+
+1. put the numbers into an array
+2. .sort numbers
+3. return
+
+*/ 
