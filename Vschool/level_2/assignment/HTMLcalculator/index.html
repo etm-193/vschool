@@ -7,38 +7,38 @@
     <title>HtmlCalculator</title>
 </head>
 <body>
-    <h1>Welcome to the HTML Calculator</h1>
+    <h1 class="header">Welcome to the HTML Calculator</h1>
 
-    <div id="calcContainer">
-
-        <div id="calcScreen" class="screen">
-            <input type="text" id="screen">
+    <div class="calculator">
+        <input type="text" id="screen" readonly>
+        <div id="buttons" class="button-grid">
+            <div class="button-row">
+                <button class="button" id="seven">7</button>
+                <button class="button" id="eight">8</button>
+                <button class="button" id="nine">9</button>
+                <button class="button" id="div">/</button>
+            </div>
+            <div class="button-row">
+                <button class="button" id="six">6</button>
+                <button class="button" id="five">5</button>
+                <button class="button" id="four">4</button>
+                <button class="button" id="mult">X</button>
+            </div>
+            <div class="button-row">
+                <button class="button" id="one">1</button>
+                <button class="button" id="two">2</button>
+                <button class="button" id="three">3</button>
+                <button class="button" id="sub">-</button>
+            </div>
+            <div class="button-row">
+                <button class="button" id="zero">0</button>
+                <button class="button" id="clearBtn">C</button>
+                <button class="button" id="equals">=</button>
+                <button class="button" id="add">+</button>
+            </div>
         </div>
-        <div id="buttons">
-            <button id="zero"> 0 </button>
-            <button id="one"> 1  </button>
-            <button id="two"> 2  </button>
-            <button id="three">3 </button>
-            <button id="four"> 4 </button>
-            <button id="five"> 5 </button>
-            <button id="six"> 6  </button>
-            <button id="seven">7 </button>
-            <button id="eight">8 </button>
-            <button id="nine"> 9 </button>
-            <button id="add"> +  </button>
-            <button id="sub"> -  </button> 
-            <button id="mult"> X </button>
-            <button id="div"> /  </button>
-
-            <button type="submit" id="equals">=</button>
-            <button id="clearBtn">C</button>
-
-        </div>
-
-
     </div>
-
-
+</div>
     <script src="/Vschool/level_2/assignment/HTMLcalculator/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.3.0/math.js"></script>
 </body>

@@ -1,0 +1,76 @@
+/* Resetting default margin and padding for the entire page */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* h1 styling  */
+
+.header {
+    margin: 0;
+    /* Remove the default margin that may be pushing the h1 down */
+    padding: 20px;
+    /* Add padding to the h1 to create spacing */
+    text-align: center;
+    /* Center the text horizontally */
+}
+
+/* Centering the calculator in the viewport */
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the buttons */
+.button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 4fr);
+    /* Create 4 columns of equal width */
+    grid-gap: 5px;
+    /* Add spacing between buttons */
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    /* Center buttons in each row */
+}
+
+/*screen style*/
+
+#screen {
+    width: 22%;
+    height: 22%;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+    padding: 10px;
+    text-align: right;
+    font-size: 2em;
+    color: #333;
+}
