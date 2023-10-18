@@ -1,0 +1,90 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+p {
+    padding-left: 25%;
+}
+
+form {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* input[type="radio"]#male + label {
+  display: inline-flex;
+  color: blue;
+}
+
+
+input[type="radio"]#female + label {
+    display: inline-flex;
+  color: pink;
+}
+
+input[type="radio"]#other + label {
+    display: inline-flex;
+  color: green;
+} */
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="radio"] {
+    display: inline-flex;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 5px 5px 5px 0;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
