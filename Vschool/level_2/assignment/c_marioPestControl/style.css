@@ -1,0 +1,78 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    border: solid 1px black;
+}
+
+body {
+    display: flex;
+    /* Add this to make the body a flex container */
+    flex-direction: column;
+    /* Stack the children vertically */
+    align-items: center;
+    /* Center content horizontally */
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+#mainContainer {
+    display: flex;
+    /* Make it a flex container */
+    justify-content: space-between;
+    /* Horizontally align items */
+    margin: 20px;
+}
+
+.baddie {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+}
+
+img {
+    max-width: 100px;
+}
+
+input {
+    width: 50px;
+    text-align: center;
+}
+
+.total-price {
+    margin: 20px;
+}
+
+footer {
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#myButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+#myButton:hover {
+    background-color: darkblue;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Pest Control</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1>Mario's Pest Control</h1>
+
+    <div id="mainContainer">
+        <div class="baddie">
+            <img src="https://static.wikia.nocookie.net/mario/images/d/d5/GoombaNSMB.png/revision/latest/scale-to-width-down/1000?cb=20180609190653"
+                alt="Goomba">
+            <h2>Goomba</h2>
+            <p>Price: 5 Coins</p>
+            <input type="number" id="goombaCount" class="count-input">
+        </div>
+        <div class="baddie">
+            <img src="https://static.wikia.nocookie.net/mario/images/8/8c/Bob-omb%2C_New_Super_Mario_Bros._U.png/revision/latest?cb=20121119023919"
+                alt="Bob-omb">
+            <h2>Bomb</h2>
+            <p>Price: 7 Coins</p>
+            <input type="number" id="bombCount" class="count-input">
+        </div>
+        <div class="baddie">
+            <img src="https://static.wikia.nocookie.net/mario/images/7/71/NSMBU_Cheep_Cheep.png/revision/latest/scale-to-width-down/1000?cb=20190808220102"
+                alt="Cheep Cheep">
+            <h2>Cheep Cheep</h2>
+            <p>Price: 11 Coins</p>
+            <input type="number" id="cheepCount" class="count-input">
+        </div>
+    </div>
+
+    <div class="total-price">
+        <p>Total Price: <span id="total">0</span> Coins</p>
+    </div>
+
+    <button id="calculateButton">Calculate</button>
+
+    <footer>
+        <p>Mario's Email: mario@mariopestcontrol.com</p>
+        <p>Mario's Website: <a href="https://www.mariopestcontrol.com">www.mariopestcontrol.com</a></p>
+        <p>Mario's Address: 123 Mushroom Kingdom, 45678</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

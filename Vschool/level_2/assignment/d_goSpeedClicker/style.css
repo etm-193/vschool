@@ -1,0 +1,19 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    text-align: center;
+}
+
+#clickCount {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+#timer {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
