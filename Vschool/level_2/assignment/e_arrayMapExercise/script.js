@@ -111,11 +111,14 @@ console.log(makeStrings([
 // "Kayne West is under age!!",
 // "Bob Ziroll can go to The Matrix"]
 
+//6) Make an array of the names in h1s, and the ages in h2s
 
-// 6) Make an array of the names in h1s, and the ages in h2s
-function readyToPutInTheDOM(arr){
-  // your code here
+function readyToPutInTheDOM(arr) {
+  const result = arr.map(person => `<h1>${person.name}</h1><h2>${person.age}</h2>`);
+  document.body.innerHTML = result.join('');
+  return result;  
 }
+
 console.log(readyToPutInTheDOM([
     {
         name: "Angelina Jolie",
