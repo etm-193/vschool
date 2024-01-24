@@ -1,0 +1,73 @@
+/* Define styles for the initial state of the buttons */
+.box {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #3498db;
+    border: 2px solid #2980b9;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #888888;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Define unique styles for each button based on its value */
+#red {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+    box-shadow: 5px 5px 10px #d35400;
+}
+
+#blue {
+    background-color: #3498db;
+    border-color: #2980b9;
+    box-shadow: 3px 3px 5px #888888;
+}
+
+#yellow {
+    background-color: #f1c40f;
+    border-color: #d4ac0d;
+    box-shadow: 5px 5px 10px #f39c12;
+}
+
+#green {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+    box-shadow: 5px 5px 10px #16a085;
+}
+
+#orange {
+    background-color: #e67e22;
+    border-color: #d35400;
+    box-shadow: 5px 5px 10px #c0392b;
+}
+
+/* Add hover effect to all boxes */
+#red:hover{
+  background-color:blue;
+}
+
+#blue:hover{
+  background-color:blue;
+}
+
+#yellow:hover{
+  background-color:blue;
+}
+
+#green:hover{
+  background-color:blue;
+}
+
+#orange:hover{
+  background-color:blue;
+}
+
+label {
+    cursor: pointer;
+}
