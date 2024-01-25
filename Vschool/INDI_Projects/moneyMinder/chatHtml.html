@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            position: relative; /* To position the input field */
+            cursor: pointer; /* Add pointer cursor to cells */
+        }
+
+        .current-month {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .prev-next-buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .day-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-weight: bold;
+        }
+
+        .transaction-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .transaction-list-item {
+            margin-bottom: 5px;
+        }
+
+        .add-transaction-button {
+            width: 80%; /* Adjust the width as needed */
+            margin: 5px auto; /* Center the button */
+            padding: 5px;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .remove-transaction-button {
+            width: 80%; /* Adjust the width as needed */
+            margin: 5px auto; /* Center the button */
+            padding: 5px;
+            box-sizing: border-box;
+            display: block;
+            background-color: #ff5733; /* Red background color for the remove button */
+            color: white; /* White text color */
+            border: none; /* No border */
+            cursor: pointer;
+        }
+
+        .selected-cell {
+            background-color: #e6e6e6; /* Background color for selected cell */
+        }
+
+        .transaction-box {
+            display: none;
+            background-color: #f2f2f2;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    
+    <title>moneyMinder</title>
+</head>
+<body>
+    <!-- Month and Year Dropdowns -->
+<select id="monthDropdown"></select>
+<select id="yearDropdown"></select>
+
+<!-- Previous and Next Buttons -->
+<button onclick="prevMonth()">Previous</button>
+<button onclick="nextMonth()">Next</button>
+
+<!-- Calendar -->
+    <table id="calendar">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody id="calendarBody"></tbody>
+    </table>
+    
+    <!-- Transaction Box -->
+    <div class="transaction-box" id="transactionBox">
+    <h2 id="selectedDate">Selected Date</h2>
+    <ul id="transactionList" class="transaction-list"></ul>
+    <input type="number" id="transactionInput" class="transaction-input" step="0.01" placeholder="Enter transaction">
+    <button onclick="addTransaction()">Add Transaction</button>
+    <button onclick="removeAllTransactions()">Remove All Transactions</button>
+    <button onclick="closeTransactionBox()">Close</button>
+</div>
+<script>
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let selectedDateCell = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    initCalendar();
+    displayCalendar(currentMonth, currentYear);
+});
+
+function initCalendar() {
+    populateMonthDropdown();
+    populateYearDropdown();
+}
+
+function populateMonthDropdown() {
+    const monthDropdown = document.getElementById('monthDropdown');
+    for (let i = 0; i < 12; i++) {
+        const month = new Date(0, i).toLocaleString('default', { month: 'long' });
+        const option = new Option(month, i);
+        monthDropdown.options.add(option);
+    }
+    monthDropdown.value = currentMonth;
+    monthDropdown.addEventListener('change', (e) => {
+        currentMonth = parseInt(e.target.value);
+        displayCalendar(currentMonth, currentYear);
+    });
+}
+
+function populateYearDropdown() {
+    const yearDropdown = document.getElementById('yearDropdown');
+    const currentYear = new Date().getFullYear();
+    for (let i = currentYear - 50; i <= currentYear + 50; i++) {
+        const option = new Option(i, i);
+        yearDropdown.options.add(option);
+    }
+    yearDropdown.value = currentYear;
+    yearDropdown.addEventListener('change', (e) => {
+        currentYear = parseInt(e.target.value);
+        displayCalendar(currentMonth, currentYear);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => displayCalendar(currentMonth, currentYear));
+
+function displayCalendar(month, year) {
+    const calendarBody = document.getElementById('calendarBody');
+    calendarBody.innerHTML = '';
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    document.getElementById('currentMonth').innerText = new Date(year, month, 1).toLocaleString('default', { month: 'long' }) + ' ' + year;
+
+    let dayCounter = 1;
+
+    for (let i = 0; i < 6; i++) {
+        const row = document.createElement('tr');
+
+        for (let j = 0; j < 7; j++) {
+            const cell = document.createElement('td');
+            const dayNumber = document.createElement('div'); // Create a div for day number
+            dayNumber.className = 'day-number'; // Add class for styling
+
+            if (i === 0 && j < firstDayOfMonth) {
+                // Empty cells before the first day of the month
+                cell.textContent = '';
+            } else if (dayCounter > daysInMonth) {
+                // Empty cells after the last day of the month
+                cell.textContent = '';
+            } else {
+                // Display the day number inside the box
+                dayNumber.textContent = dayCounter;
+                cell.appendChild(dayNumber);
+                // Add double-click event to select the cell
+                cell.addEventListener('dblclick', function() {
+                    selectDateCell(this, dayCounter, month, year);
+                });
+                dayCounter++;
+            }
+            row.appendChild(cell);
+        }
+
+        calendarBody.appendChild(row);
+    }
+
+}
+function prevMonth() {
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+    displayCalendar(currentMonth, currentYear);
+}
+
+function nextMonth() {
+    currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
+    currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+    displayCalendar(currentMonth, currentYear);
+}
+
+function selectDateCell(cell) {
+    if (selectedDateCell) {
+        selectedDateCell.classList.remove('selected-cell');
+    }
+    cell.classList.add('selected-cell');
+    selectedDateCell = cell;
+
+    const selectedDateString = new Date(currentYear, currentMonth, cell.textContent).toLocaleDateString();
+    document.getElementById('selectedDate').textContent = `Selected Date: ${selectedDateString}`;
+    document.getElementById('transactionBox').style.display = 'block';
+
+    // Display existing transactions for the selected date
+    displayTransactionsForDate(new Date(currentYear, currentMonth, cell.textContent));
+}
+
+function addTransaction() {
+    if (!selectedDateCell) {
+        alert('Please select a date.');
+        return;
+    }
+    const transactionInput = document.getElementById('transactionInput');
+    const transactionValue = parseFloat(transactionInput.value);
+    if (isNaN(transactionValue)) {
+        alert('Please enter a valid transaction value.');
+        return;
+    }
+
+    const transactionList = document.getElementById('transactionList');
+    const listItem = document.createElement('li');
+    listItem.textContent = `Date: ${selectedDateCell.textContent} - Amount: $${transactionValue}`;
+    transactionList.appendChild(listItem);
+
+    saveTransaction(new Date(currentYear, currentMonth, selectedDateCell.textContent), transactionValue);
+    transactionInput.value = '';
+
+    // Display transaction in the calendar cell
+    const transactionAmountDiv = document.createElement('div');
+    transactionAmountDiv.textContent = `$${transactionValue}`;
+    selectedDateCell.appendChild(transactionAmountDiv);
+
+    // Refresh the transaction list for the selected date
+    displayTransactionsForDate(new Date(currentYear, currentMonth, selectedDateCell.textContent));
+}
+
+function displayTransactionsForDate(date) {
+    const transactionList = document.getElementById('transactionList');
+    transactionList.innerHTML = '';
+
+    const transactions = getTransactionsForDate(date);
+    transactions.forEach(transaction => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Date: ${date.getDate()} - Amount: $${transaction.amount}`;
+        transactionList.appendChild(listItem);
+    });
+}
+
+function getTransactionsForDate(date) {
+    const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    return transactions.filter(transaction => {
+        const transactionDate = new Date(transaction.date);
+        return transactionDate.getFullYear() === date.getFullYear() &&
+               transactionDate.getMonth() === date.getMonth() &&
+               transactionDate.getDate() === date.getDate();
+    });
+}
+
+function saveTransaction(date, amount) {
+    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    transactions.push({ date: date.toISOString(), amount: amount });
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
+function removeAllTransactions() {
+    // Clear the transaction list in the DOM
+    const transactionList = document.getElementById('transactionList');
+    transactionList.innerHTML = '';
+
+    // Optionally, also clear transactions from local storage
+    localStorage.removeItem('transactions');
+}
+
+function closeTransactionBox() {
+    // Hide the transaction box
+    document.getElementById('transactionBox').style.display = 'none';
+}
+
+
+</script>
+</body>
+</html>

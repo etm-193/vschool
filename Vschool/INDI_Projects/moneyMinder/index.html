@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Document</title>
+</head>
+
+    
+<body>
+    <!-- Month and Year Dropdowns -->
+<select id="monthDropdown"></select>
+<select id="yearDropdown"></select>
+
+<!-- Previous and Next Buttons -->
+<button onclick="prevMonth()">Previous</button>
+<button onclick="nextMonth()">Next</button>
+<div id="currentMonth"></div>
+    <table id="calendar">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody id="calendarBody"></tbody>
+    </table>
+    
+    <!-- Transaction Box -->
+    <div class="transaction-box" id="transactionBox">
+    <h2 id="selectedDate">Selected Date</h2>
+    <ul id="transactionList" class="transaction-list"></ul>
+    <input type="number" id="transactionInput" class="transaction-input" step="0.01" placeholder="Enter transaction">
+    <button onclick="addTransaction()">Add Transaction</button>
+    <button onclick="removeAllTransactions()">Remove All Transactions</button>
+    <button onclick="closeTransactionBox()">Close</button>
+</div>
+
+</body>
+    <script src="script.js"></script>
+</html>
