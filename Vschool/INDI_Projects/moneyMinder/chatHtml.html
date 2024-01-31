@@ -95,7 +95,7 @@
 <!-- Previous and Next Buttons -->
 <button onclick="prevMonth()">Previous</button>
 <button onclick="nextMonth()">Next</button>
-
+<!-- <div id="currentMonth"></div>  -->
 <!-- Calendar -->
     <table id="calendar">
         <thead>
@@ -121,10 +121,11 @@
     <button onclick="removeAllTransactions()">Remove All Transactions</button>
     <button onclick="closeTransactionBox()">Close</button>
 </div>
-<script>
 
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<script>
 let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+let currentYear = new Date().getFullYear(); // Declare currentYear as a let variable
 let selectedDateCell = null;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -174,10 +175,6 @@ function displayCalendar(month, year) {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-    document.getElementById('currentMonth').innerText = new Date(year, month, 1).toLocaleString('default', { month: 'long' }) + ' ' + year;
-
     let dayCounter = 1;
 
     for (let i = 0; i < 6; i++) {
@@ -185,23 +182,19 @@ function displayCalendar(month, year) {
 
         for (let j = 0; j < 7; j++) {
             const cell = document.createElement('td');
-            const dayNumber = document.createElement('div'); // Create a div for day number
-            dayNumber.className = 'day-number'; // Add class for styling
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'day-number';
 
             if (i === 0 && j < firstDayOfMonth) {
-                // Empty cells before the first day of the month
                 cell.textContent = '';
             } else if (dayCounter > daysInMonth) {
-                // Empty cells after the last day of the month
                 cell.textContent = '';
             } else {
-                // Display the day number inside the box
                 dayNumber.textContent = dayCounter;
                 cell.appendChild(dayNumber);
-                // Add double-click event to select the cell
-                cell.addEventListener('dblclick', function() {
-                    selectDateCell(this, dayCounter, month, year);
-                });
+                cell.addEventListener('click', function() {
+    selectDateCell(this, dayCounter, month, year);
+});
                 dayCounter++;
             }
             row.appendChild(cell);
@@ -209,19 +202,32 @@ function displayCalendar(month, year) {
 
         calendarBody.appendChild(row);
     }
-
 }
+
+// Modify the previousMonth and nextMonth functions to update the dropdowns
 function prevMonth() {
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+    updateDropdowns(); // Add this line to update the dropdowns
     displayCalendar(currentMonth, currentYear);
 }
 
 function nextMonth() {
     currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
     currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+    updateDropdowns(); // Add this line to update the dropdowns
     displayCalendar(currentMonth, currentYear);
 }
+
+// Add this function to update the dropdowns
+function updateDropdowns() {
+    const monthDropdown = document.getElementById('monthDropdown');
+    const yearDropdown = document.getElementById('yearDropdown');
+
+    monthDropdown.value = currentMonth;
+    yearDropdown.value = currentYear;
+}
+
 
 function selectDateCell(cell) {
     if (selectedDateCell) {
@@ -300,9 +306,15 @@ function removeAllTransactions() {
     const transactionList = document.getElementById('transactionList');
     transactionList.innerHTML = '';
 
-    // Optionally, also clear transactions from local storage
+    // Remove transactions from local storage
     localStorage.removeItem('transactions');
+
+    // Refresh the transaction list for the selected date in the transaction box
+    if (selectedDateCell) {
+        displayTransactionsForDate(new Date(currentYear, currentMonth, selectedDateCell.textContent));
+    }
 }
+
 
 function closeTransactionBox() {
     // Hide the transaction box
@@ -310,6 +322,24 @@ function closeTransactionBox() {
 }
 
 
+function populateYearDropdown() {
+    const yearDropdown = document.getElementById('yearDropdown');
+    const now = new Date();
+    // Remove the 'let' keyword here to reassign the global variable
+    currentYear = now.getFullYear();
+    for (let i = currentYear - 50; i <= currentYear + 50; i++) {
+        const option = new Option(i, i);
+        yearDropdown.options.add(option);
+    }
+    yearDropdown.value = currentYear;
+
+    yearDropdown.addEventListener('change', (e) => {
+        // Update the global currentYear variable without 'let'
+        currentYear = parseInt(e.target.value);
+        // Redisplay the calendar with the new year
+        displayCalendar(currentMonth, currentYear);
+    });
+}
 </script>
 </body>
 </html>

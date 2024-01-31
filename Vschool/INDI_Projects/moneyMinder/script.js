@@ -77,17 +77,30 @@ function displayCalendar(month, year) {
     }
 }
 
+// Modify the previousMonth and nextMonth functions to update the dropdowns
 function prevMonth() {
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+    updateDropdowns(); // Add this line to update the dropdowns
     displayCalendar(currentMonth, currentYear);
 }
 
 function nextMonth() {
     currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
     currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+    updateDropdowns(); // Add this line to update the dropdowns
     displayCalendar(currentMonth, currentYear);
 }
+
+// Add this function to update the dropdowns
+function updateDropdowns() {
+    const monthDropdown = document.getElementById('monthDropdown');
+    const yearDropdown = document.getElementById('yearDropdown');
+
+    monthDropdown.value = currentMonth;
+    yearDropdown.value = currentYear;
+}
+
 
 function selectDateCell(cell) {
     if (selectedDateCell) {
